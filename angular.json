@@ -24,15 +24,24 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
-            "styles": [
-              "src/styles.scss"
-            ]
+       "assets": [
+  {
+    "glob": "**/*",
+    "input": "public"
+  },
+  {
+    "glob": "**/*",
+    "input": "src/assets",
+    "output": "assets"
+  }
+],
+       "styles": [
+  "node_modules/bootstrap/dist/css/bootstrap.min.css",
+  "src/styles.scss"
+],
+"scripts": [
+  "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+]
           },
           "configurations": {
             "production": {
@@ -82,15 +91,24 @@
             ],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
-            "styles": [
-              "src/styles.scss"
-            ]
+      "assets": [
+  {
+    "glob": "**/*",
+    "input": "public"
+  },
+  {
+    "glob": "**/*",
+    "input": "src/assets",
+    "output": "assets"
+  }
+],
+     "styles": [
+  "node_modules/bootstrap/dist/css/bootstrap.min.css",
+  "src/styles.scss"
+],
+            "scripts": [
+  "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+]
           }
         }
       }

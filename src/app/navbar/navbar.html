@@ -1,0 +1,42 @@
+<nav class="text-center pt-1 mb-3">
+
+  <a>{{ 'home.title' | translate }}</a>
+  <br>
+  <br>
+<button mat-raised-button (click)="changeLang()">
+  {{ 'buttons.changeLanguage' | translate }}
+</button>
+
+</nav>
+
+
+
+<div class="container mt-5">
+<form [formGroup]="form" (ngSubmit)="submit()">
+
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" formControlName="password">
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="form.invalid">
+    Submit
+  </button>
+
+</form>
+</div>
+
