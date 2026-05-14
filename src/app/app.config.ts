@@ -15,7 +15,6 @@ export class AppTranslateLoader implements TranslateLoader {
   constructor(private http: HttpClient) {}
 
   getTranslation(lang: string): Observable<any> {
-    // return this.http.get(`/assets/i18n/${lang}.json`);
     return this.http.get(`assets/i18n/${lang}.json`);
   }
    }
@@ -30,7 +29,7 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(
       TranslateModule.forRoot({
         // defaultLanguage: 'ar',
-        fallbackLang: 'ar',
+        fallbackLang: 'en',
         loader: {
           provide: TranslateLoader,
           useClass: AppTranslateLoader,
