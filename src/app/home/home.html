@@ -38,10 +38,11 @@ Shop now
 
     @for (product of products; track product.id) {
 <div class="col-lg-3  col-md-4 col-sm-6">
-  <div class="product-card p-2 mt-3" >
+  <div class="product-card  mt-3" >
 
 
-      @if(product.isNew)
+<div class="main-badge">
+       @if(product.isNew)
       {
       <span
         class="badge" >
@@ -53,7 +54,7 @@ Shop now
       @if(product.discount)
       {
       <span
-        class="badge discount">
+        class="badge ">
         {{ product.discount }}%
       </span>
       }
@@ -61,11 +62,12 @@ Shop now
       @if(product.isHot)
       {
      <span
-        class="badge hot">
+        class="badge ">
         HOT
       </span>
       }
 
+</div>
 
       <div class="image-wrapper">
 
