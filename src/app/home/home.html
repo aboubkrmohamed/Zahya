@@ -15,3 +15,121 @@ Shop now
   </div>
 
 </div>
+
+
+<!-- Featured Products -->
+ <div class="container">
+<div class="featured-products">
+
+  <div class="section-header">
+
+    <a routerLink="/products" class="view-all">
+      ← View All Product
+    </a>
+
+    <h2>
+      PRODUCT <span>FEATURED</span>
+    </h2>
+
+  </div>
+
+  <div class="row">
+
+
+    @for (product of products; track product.id) {
+<div class="col-lg-3  col-md-4 col-sm-6">
+  <div class="product-card p-2 mt-3" >
+
+
+      @if(product.isNew)
+      {
+      <span
+        class="badge" >
+        NEW
+      </span>
+
+      }
+
+      @if(product.discount)
+      {
+      <span
+        class="badge discount">
+        {{ product.discount }}%
+      </span>
+      }
+
+      @if(product.isHot)
+      {
+     <span
+        class="badge hot">
+        HOT
+      </span>
+      }
+
+
+      <div class="image-wrapper">
+
+        <img
+          [src]="product.image"
+          [alt]="product.name">
+
+        <div
+          class="out-stock"
+          *ngIf="product.outOfStock">
+          Out Of Stock
+        </div>
+
+      </div>
+
+      <div class="content">
+
+        <p class="category">
+          {{ product.category }}
+        </p>
+
+        <h3>
+          {{ product.name }}
+        </h3>
+
+        <div class="price">
+
+          <span class="old">
+            ${{ product.oldPrice }}
+          </span>
+
+          <span class="new">
+            ${{ product.price }}
+          </span>
+
+        </div>
+
+        <div class="rating">
+          ({{ product.reviewsCount }})
+          ⭐⭐⭐⭐⭐
+        </div>
+
+        <div
+          class="sizes"
+          *ngIf="product.sizes?.length">
+
+          <button
+            *ngFor="let size of product.sizes">
+            {{ size }}
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    </div>
+    }
+
+
+
+  </div>
+
+</div>
+ </div>
+
