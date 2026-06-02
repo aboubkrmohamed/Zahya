@@ -77,7 +77,7 @@ export class Home{
       reviewsCount: 50,
       isHot: true,
       discount: 15,
-      sizes: ['ml 1500', 'ml 1000', 'ml 500', 'ml 250'],
+      sizes: [' 1500 ML', '1000 ML', ' 500 ML', '250 ML'],
     },
 
      {
@@ -91,7 +91,7 @@ export class Home{
       reviewsCount: 50,
       isHot: true,
       discount: 15,
-      sizes: ['ml 1500', 'ml 1000', 'ml 500', 'ml 250'],
+      sizes: [' 1500 ML', '1000 ML', ' 500 ML', '250 ML'],
     },
 
          {
@@ -105,7 +105,7 @@ export class Home{
       reviewsCount: 50,
       isHot: true,
       discount: 15,
-      sizes: ['ml 1500', 'ml 1000', 'ml 500', 'ml 250'],
+      sizes: [' 1500 ML', '1000 ML', ' 500 ML', '250 ML'],
     },
 
              {
@@ -119,7 +119,7 @@ export class Home{
       reviewsCount: 50,
       isHot: true,
       discount: 15,
-      sizes: ['ml 1500', 'ml 1000', 'ml 500', 'ml 250'],
+      sizes: [' 1500 ML', '1000 ML', ' 500 ML', '250 ML'],
     },
 
              {
@@ -133,7 +133,7 @@ export class Home{
       reviewsCount: 50,
       isHot: true,
       discount: 15,
-      sizes: ['ml 1500', 'ml 1000', 'ml 500', 'ml 250'],
+      sizes: [' 1500 ML', '1000 ML', ' 500 ML', '250 ML'],
     },
   ];
 }

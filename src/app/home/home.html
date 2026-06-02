@@ -1,15 +1,16 @@
 <div class="home text-center  position-relative vh-100">
 
-  <div class="content position-absolute top-0 bottom-0 right-0 left-0 d-flex align-item-center justify-content-center flex-column w-100 ">
-  <h1>Skin wellness takes gentle time.</h1>
-  <p>Whatever your summer looks like, bring your own heat with up to 25% off Lumin Brand.</p>
+  <div
+    class="content position-absolute top-0 bottom-0 right-0 left-0 d-flex align-item-center justify-content-center flex-column w-100 ">
+    <h1>Skin wellness takes gentle time.</h1>
+    <p>Whatever your summer looks like, bring your own heat with up to 25% off Lumin Brand.</p>
 
-  <div class="  d-flex align-item-center justify-content-center ">
-  <button>
-    <a href="/">
-Shop now
-    </a> </button>
-  </div>
+    <div class="  d-flex align-item-center justify-content-center ">
+      <button>
+        <a href="/">
+          Shop now
+        </a> </button>
+    </div>
 
 
   </div>
@@ -18,120 +19,108 @@ Shop now
 
 
 <!-- Featured Products -->
- <div class="container">
-<div class="featured-products">
+<div class="container">
+  <div class="featured-products">
 
-  <div class="section-header">
-
-    <a routerLink="/products" class="view-all">
-      ← View All Product
-    </a>
-
-    <h2>
-      PRODUCT <span>FEATURED</span>
-    </h2>
-
-  </div>
-
-  <div class="row">
+    <div class="section-header">
+            <h2 class="text-center mb-4">
+        PRODUCT <span>FEATURED</span>
+      </h2>
 
 
-    @for (product of products; track product.id) {
-<div class="col-lg-3  col-md-4 col-sm-6">
-  <div class="product-card  mt-3" >
+    </div>
+
+    <div class="row">
 
 
-<div class="main-badge">
-       @if(product.isNew)
-      {
-      <span
-        class="badge" >
-        NEW
-      </span>
+      @for (product of products; track product.id) {
+      <div class="col-lg-3  col-md-4 col-sm-6">
+        <div class="product-card  mt-3">
 
-      }
 
-      @if(product.discount)
-      {
-      <span
-        class="badge ">
-        {{ product.discount }}%
-      </span>
-      }
+          <div class="main-badge">
+            @if(product.isNew)
+            {
+            <span class="badge">
+              NEW
+            </span>
 
-      @if(product.isHot)
-      {
-     <span
-        class="badge ">
-        HOT
-      </span>
-      }
+            }
 
-</div>
+            @if(product.discount)
+            {
+            <span class="badge ">
+              {{ product.discount }}%
+            </span>
+            }
 
-      <div class="image-wrapper">
+            @if(product.isHot)
+            {
+            <span class="badge ">
+              HOT
+            </span>
+            }
 
-        <img
-          [src]="product.image"
-          [alt]="product.name">
+          </div>
 
-        <div
-          class="out-stock"
-          *ngIf="product.outOfStock">
-          Out Of Stock
-        </div>
+          <div class="image-wrapper">
 
-      </div>
+            <img [src]="product.image" [alt]="product.name">
 
-      <div class="content">
+            <div class="out-stock" *ngIf="product.outOfStock">
+              Out Of Stock
+            </div>
 
-        <p class="category">
-          {{ product.category }}
-        </p>
+          </div>
 
-        <h3>
-          {{ product.name }}
-        </h3>
+          <div class="content">
 
-        <div class="price">
+            <p class="category">
+              {{ product.category }}
+            </p>
 
-          <span class="old">
-            ${{ product.oldPrice }}
-          </span>
+            <h3>
+              {{ product.name }}
+            </h3>
 
-          <span class="new">
-            ${{ product.price }}
-          </span>
+            <div class="price">
 
-        </div>
+              <span class="old">
+                ${{ product.oldPrice }}
+              </span>
 
-        <div class="rating">
-          ({{ product.reviewsCount }})
-          ⭐⭐⭐⭐⭐
-        </div>
+              <span class="new">
+                ${{ product.price }}
+              </span>
 
-        <div
-          class="sizes"
-          *ngIf="product.sizes?.length">
+            </div>
 
-          <button
-            *ngFor="let size of product.sizes">
-            {{ size }}
-          </button>
+            <div class="rating">
+              <span>
+              ({{ product.reviewsCount }})
+              </span>
+              ⭐⭐⭐⭐⭐
+            </div>
+
+          </div>
 
         </div>
 
       </div>
+      }
+
+      <div class="text-center  view-all d-flex align-item-center justify-content-center mt-4">
+        <button>
+              <a routerLink="/allProduct">
+
+                <span class="px-1"> ← </span>
+                View All Product
+              </a>
+        </button>
+      </div>
+
 
     </div>
-
-    </div>
-    }
-
-
 
   </div>
-
 </div>
- </div>
-

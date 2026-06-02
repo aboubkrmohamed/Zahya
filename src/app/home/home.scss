@@ -76,20 +76,16 @@ button:hover {
 }
 
 .section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 40px;
 
-  .view-all {
-    color: #000;
-    text-decoration: none;
-    font-size: 18px;
-  }
 
   h2 {
     font-size: 36px;
     font-weight: 300;
+    text-decoration: underline;
+      text-underline-offset: 14px;
+        text-decoration-thickness: 2px;
+  text-decoration-color: rgba(0, 0, 0, 0.8);
+
 
     span {
       font-weight: 700;
@@ -104,8 +100,20 @@ button:hover {
   position: relative;
   background: #f8f8f8;
   padding: 8px;
-  transition:   all, .3s ease;
+  transition: all .3s;
+height: 25rem;
+  font-family: var(--font-Jost);
 
+  @media(max-width:700px) {
+
+height: 30rem;
+  }
+
+  &:hover
+  {
+    cursor: pointer;
+    padding: 2px;
+  }
 
 
 
@@ -134,16 +142,12 @@ button:hover {
 
   }
 
-
-
-
-
   .image-wrapper {
     position: relative;
 
     img {
       width: 100%;
-      height: 260px;
+      height: 30%;
       object-fit: cover;
       display: block;
       border-radius: 10px;
@@ -168,18 +172,30 @@ button:hover {
     padding: 20px;
     text-align: center;
     background: #f8f8f8;
-
+    height: 17rem;
+        overflow-y: scroll;
   }
 
   .category {
-    color: #888;
     font-size: 13px;
     margin-bottom: 10px;
+    cursor: pointer;
+    font-weight: 400;
+    text-transform: uppercase;
+    transition:all 0.5s;
+    color: rgb(135, 133, 133);
+
+&:hover
+{
+  color: #222;
+}
   }
 
   h3 {
-    margin-bottom: 15px;
-    min-height: 48px;
+    margin:.5rem 0 ;
+  font-size: 1rem;
+  line-height: 1.4rem;
+  font-weight: 700;
   }
 
   .price {
@@ -198,27 +214,40 @@ button:hover {
   }
 
   .rating {
-    color: #f8b400;
+    color: #ababab;
   }
 
   .sizes {
     margin-top: 15px;
-
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-
     button {
-      border: 1px solid #ddd;
       background: white;
-      padding: 8px 12px;
       cursor: pointer;
+      width: 100%;
+      height: 60px;
+    font-size: 12px;
+    color: #222;
+    line-height: 1.2;
+    border: 1px solid #969696;
     }
   }
 }
 
-.product-card:hover {
-  // transform: translateY(-10px);
-  padding: 3px;
-  box-shadow: 0 15px 35px rgba(0,0,0,.15);
+.view-all
+{
+button
+{
+  background-color: #222;
+  width: 18rem;
+  height: 3rem;
+  border-radius: 9px;
+  font-size: 18px;
+  font-weight: 700;
+  transition: all 1s;
+
+    a {
+    text-decoration: none;
+    color: #fff;
+
+  }
+}
 }
