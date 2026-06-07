@@ -1,4 +1,204 @@
-<div class="main text-center">
-<p>all-product works!</p>
+<div class="all-product-page">
 
+  <!-- ═══════════════ PAGE HEADER ═══════════════ -->
+  <div class="page-header">
+    <div class="container">
+      <h1>All <span>Products</span></h1>
+      <p>Discover your next beauty essential</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="content-wrapper">
+
+      <!-- ═══════════════ SIDEBAR FILTERS ═══════════════ -->
+      <aside class="sidebar">
+
+        <div class="sidebar-card">
+          <h6 class="sidebar-title">Search</h6>
+          <div class="search-box">
+            <i class="bi bi-search search-icon"></i>
+            <input
+              type="text"
+              class="form-control search-input"
+              placeholder="Search products..."
+              [value]="searchQuery()"
+              (input)="onSearch($any($event.target).value)"
+            />
+            @if (searchQuery()) {
+              <button class="search-clear" (click)="onSearch('')">
+                <i class="bi bi-x"></i>
+              </button>
+            }
+          </div>
+        </div>
+
+        <div class="sidebar-card">
+          <h6 class="sidebar-title">Categories</h6>
+          <div class="category-list">
+            @for (cat of categories; track cat) {
+              <button
+                class="category-btn"
+                [class.active]="selectedCategory() === cat"
+                (click)="setCategory(cat)"
+              >
+                {{ cat }}
+                @if (cat === 'ALL') {
+                  <span class="cat-count">{{ allProducts.length }}</span>
+                }
+              </button>
+            }
+          </div>
+        </div>
+
+        <div class="sidebar-card">
+          <h6 class="sidebar-title">Sort By</h6>
+          <select
+            class="form-select sort-select"
+            [value]="selectedSort()"
+            (change)="setSort($any($event.target).value)"
+          >
+            <option value="default">Default</option>
+            <option value="price-asc">Price: Low → High</option>
+            <option value="price-desc">Price: High → Low</option>
+            <option value="name">Name A–Z</option>
+          </select>
+        </div>
+
+        <div class="sidebar-card">
+          <h6 class="sidebar-title">Filter</h6>
+          <div class="filter-toggles">
+            <label class="toggle-row" (click)="toggleInStock()">
+              <span class="toggle-label">In Stock Only</span>
+              <div class="custom-toggle" [class.on]="showInStockOnly()">
+                <span class="toggle-thumb"></span>
+              </div>
+            </label>
+            <label class="toggle-row" (click)="toggleOnSale()">
+              <span class="toggle-label">On Sale</span>
+              <div class="custom-toggle" [class.on]="showOnSaleOnly()">
+                <span class="toggle-thumb"></span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        @if (hasActiveFilters) {
+          <button class="btn-clear-all" (click)="clearFilters()">
+            <i class="bi bi-arrow-counterclockwise"></i>
+            Clear All Filters
+          </button>
+        }
+
+      </aside>
+
+      <!-- ═══════════════ PRODUCTS GRID ═══════════════ -->
+      <main class="products-main">
+
+        <!-- Results bar -->
+        <div class="results-bar">
+          <span class="results-count">
+            {{ filteredProducts().length }}
+            {{ filteredProducts().length === 1 ? 'product' : 'products' }} found
+          </span>
+          @if (hasActiveFilters) {
+            <span class="active-filter-tag">
+              <i class="bi bi-funnel-fill"></i> Filtered
+            </span>
+          }
+        </div>
+
+        <!-- Grid -->
+        @if (filteredProducts().length > 0) {
+          <div class="products-grid">
+            @for (product of filteredProducts(); track product.id) {
+              <div class="product-card">
+
+                <!-- Badges -->
+                <div class="badges-wrap">
+                  @if (product.isNew) {
+                    <span class="badge badge-new">NEW</span>
+                  }
+                  @if (product.isHot) {
+                    <span class="badge badge-hot">HOT</span>
+                  }
+                  @if (product.discount) {
+                    <span class="badge badge-discount">-{{ product.discount }}%</span>
+                  }
+                </div>
+
+                <!-- Image -->
+                <div class="card-image-wrap">
+                  <img [src]="product.image" [alt]="product.name" class="card-img" />
+                  @if (product.outOfStock) {
+                    <div class="out-of-stock-overlay">Out of Stock</div>
+                  }
+                  <div class="card-overlay">
+                    <button class="overlay-btn" title="Add to Wishlist">
+                      <i class="bi bi-heart"></i>
+                    </button>
+                    <button class="overlay-btn" title="Quick View">
+                      <i class="bi bi-eye"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Info -->
+                <div class="card-body-inner">
+                  <p class="product-category">{{ product.category }}</p>
+                  <h3 class="product-name">{{ product.name }}</h3>
+
+                  <div class="rating-row">
+                    <span class="stars">
+                      @for (star of starsArray(product.rating); track star) {
+                        <i class="bi" [class.bi-star-fill]="star <= product.rating" [class.bi-star]="star > product.rating"></i>
+                      }
+                    </span>
+                    <span class="review-count">({{ product.reviewsCount }})</span>
+                  </div>
+
+                  <div class="price-row">
+                    <span class="price-old">${{ product.oldPrice }}</span>
+                    <span class="price-new">${{ product.price }}</span>
+                  </div>
+
+                  @if (product.sizes && product.sizes.length > 0) {
+                    <div class="sizes-row">
+                      @for (size of product.sizes; track size) {
+                        <span class="size-chip">{{ size }}</span>
+                      }
+                    </div>
+                  }
+
+                  <button
+                    class="btn-add-cart"
+                    [disabled]="product.outOfStock"
+                    [class.disabled-btn]="product.outOfStock"
+                  >
+                    @if (product.outOfStock) {
+                      <i class="bi bi-x-circle me-1"></i> Out of Stock
+                    } @else {
+                      <i class="bi bi-cart-plus me-1"></i> Add to Cart
+                    }
+                  </button>
+                </div>
+
+              </div>
+            }
+          </div>
+        } @else {
+          <!-- Empty state -->
+          <div class="empty-state">
+            <i class="bi bi-search empty-icon"></i>
+            <h4>No products found</h4>
+            <p>Try adjusting your search or filters</p>
+            <button class="btn-clear-all mt-3" (click)="clearFilters()">
+              Clear Filters
+            </button>
+          </div>
+        }
+
+      </main>
+    </div>
+  </div>
 </div>
