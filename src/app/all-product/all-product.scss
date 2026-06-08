@@ -51,6 +51,7 @@ $transition: all 0.28s ease;
 
   @media (max-width: 991px) {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 }
 
@@ -62,6 +63,57 @@ $transition: all 0.28s ease;
   position: sticky;
   top: 90px;
   height: fit-content;
+
+  // ── موبايل: الـ sidebar فوق المنتجات ─────────────────────────────────────
+  @media (max-width: 991px) {
+    position: static;         // مش sticky على الموبايل
+    order: -1;                // يجي قبل المنتجات دايماً
+    gap: 10px;
+  }
+}
+
+// ── موبايل: sidebar-cards تتحول لـ row أفقي قابل للـ scroll ─────────────────
+@media (max-width: 991px) {
+  .sidebar {
+    // search bar يفضل فوق لوحده
+    .sidebar-card:first-child {
+      order: 0;
+    }
+  }
+
+  // الـ cards اللي جوا الـ sidebar على موبايل
+  .sidebar-card {
+    padding: 14px 16px;
+  }
+
+  // Categories تتحول لـ scroll أفقي
+  .category-list {
+    flex-direction: row !important;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    gap: 6px !important;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
+  }
+
+  .category-btn {
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+
+  // Sort + Filter toggles جنب بعض أفقياً
+  .filter-toggles {
+    flex-direction: row !important;
+    gap: 20px !important;
+    flex-wrap: wrap;
+  }
+
+  .toggle-row {
+    gap: 8px;
+  }
 }
 
 .sidebar-card {
@@ -308,7 +360,12 @@ $transition: all 0.28s ease;
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (max-width: 575px) {
+  @media (max-width: 991px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  @media (max-width: 400px) {
     grid-template-columns: 1fr;
   }
 }
@@ -380,6 +437,14 @@ $transition: all 0.28s ease;
   overflow: hidden;
   height: 200px;
   background: #fff;
+
+  @media (max-width: 991px) {
+    height: 160px;
+  }
+
+  @media (max-width: 400px) {
+    height: 200px;
+  }
 }
 
 .card-img {
@@ -441,6 +506,11 @@ $transition: all 0.28s ease;
   flex-direction: column;
   gap: 6px;
   flex: 1;
+
+  @media (max-width: 991px) {
+    padding: 10px 12px;
+    gap: 4px;
+  }
 }
 
 .product-category {
@@ -463,6 +533,10 @@ $transition: all 0.28s ease;
   color: $brand-dark;
   margin: 0;
   line-height: 1.3;
+
+  @media (max-width: 991px) {
+    font-size: 13px;
+  }
 }
 
 // Stars
@@ -493,12 +567,20 @@ $transition: all 0.28s ease;
     font-size: 13px;
     text-decoration: line-through;
     color: $gray-400;
+
+    @media (max-width: 991px) {
+      font-size: 11px;
+    }
   }
 
   .price-new {
     font-size: 20px;
     font-weight: 700;
     color: $brand-dark;
+
+    @media (max-width: 991px) {
+      font-size: 16px;
+    }
   }
 }
 
@@ -535,6 +617,11 @@ $transition: all 0.28s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 991px) {
+    padding: 8px;
+    font-size: 12px;
+  }
 
   &:hover:not(:disabled) {
     background: #fff;
@@ -578,4 +665,73 @@ $transition: all 0.28s ease;
     margin: 0;
     font-weight: 400;
   }
+}
+
+// ── Pagination ────────────────────────────────────────────────────────────────
+.pagination-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 48px;
+  padding-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.page-btn {
+  min-width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  border: 1px solid $gray-200;
+  background: #fff;
+  color: $brand-dark;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: $transition;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+
+  &:hover:not(:disabled):not(.active) {
+    border-color: $brand-dark;
+    background: $gray-100;
+  }
+
+  &.active {
+    background: $brand-dark;
+    border-color: $brand-dark;
+    color: #fff;
+    font-weight: 700;
+    cursor: default;
+  }
+
+  &.disabled,
+  &:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  &.nav-btn {
+    font-size: 13px;
+  }
+}
+
+.page-dots {
+  min-width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $gray-400;
+  font-size: 14px;
+  user-select: none;
+}
+
+.page-info {
+  font-size: 13px;
+  color: $gray-400;
+  margin-left: auto;
 }

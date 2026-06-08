@@ -101,6 +101,11 @@
             {{ filteredProducts().length }}
             {{ filteredProducts().length === 1 ? 'product' : 'products' }} found
           </span>
+          @if (filteredProducts().length > 0) {
+            <span class="page-info">
+              Page {{ currentPage() }} of {{ totalPages() }}
+            </span>
+          }
           @if (hasActiveFilters) {
             <span class="active-filter-tag">
               <i class="bi bi-funnel-fill"></i> Filtered
@@ -109,9 +114,9 @@
         </div>
 
         <!-- Grid -->
-        @if (filteredProducts().length > 0) {
+        @if (paginatedProducts().length > 0) {
           <div class="products-grid">
-            @for (product of filteredProducts(); track product.id) {
+            @for (product of paginatedProducts(); track product.id) {
               <div class="product-card">
 
                 <!-- Badges -->
@@ -151,7 +156,10 @@
                   <div class="rating-row">
                     <span class="stars">
                       @for (star of starsArray(product.rating); track star) {
-                        <i class="bi" [class.bi-star-fill]="star <= product.rating" [class.bi-star]="star > product.rating"></i>
+                        <i class="bi"
+                          [class.bi-star-fill]="star <= product.rating"
+                          [class.bi-star]="star > product.rating">
+                        </i>
                       }
                     </span>
                     <span class="review-count">({{ product.reviewsCount }})</span>
@@ -186,6 +194,50 @@
               </div>
             }
           </div>
+
+          <!-- ═══════════════ PAGINATION ═══════════════ -->
+          @if (totalPages() > 1) {
+            <nav class="pagination-wrap" aria-label="Products pagination">
+              <!-- Prev -->
+              <button
+                class="page-btn nav-btn"
+                [class.disabled]="currentPage() === 1"
+                [disabled]="currentPage() === 1"
+                (click)="prevPage()"
+                aria-label="Previous page"
+              >
+                <i class="bi bi-chevron-left"></i>
+              </button>
+
+              <!-- Page numbers -->
+              @for (page of pageNumbers(); track $index) {
+                @if (isNumber(page)) {
+                  <button
+                    class="page-btn"
+                    [class.active]="page === currentPage()"
+                    (click)="goToPage(page)"
+                    [attr.aria-current]="page === currentPage() ? 'page' : null"
+                  >
+                    {{ page }}
+                  </button>
+                } @else {
+                  <span class="page-dots">...</span>
+                }
+              }
+
+              <!-- Next -->
+              <button
+                class="page-btn nav-btn"
+                [class.disabled]="currentPage() === totalPages()"
+                [disabled]="currentPage() === totalPages()"
+                (click)="nextPage()"
+                aria-label="Next page"
+              >
+                <i class="bi bi-chevron-right"></i>
+              </button>
+            </nav>
+          }
+
         } @else {
           <!-- Empty state -->
           <div class="empty-state">
