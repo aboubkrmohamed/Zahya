@@ -2,13 +2,16 @@
 
   <div
     class="content position-absolute top-0 bottom-0 right-0 left-0 d-flex align-item-center justify-content-center flex-column w-100 ">
-    <h1>Skin wellness takes gentle time.</h1>
-    <p>Whatever your summer looks like, bring your own heat with up to 25% off Lumin Brand.</p>
+    <h1>{{ 'home.heroTitle' | translate }}</h1>
+    <p>
+      {{ 'home.heroDescription' | translate }}
+    </p>
+
 
     <div class="  d-flex align-item-center justify-content-center ">
       <button>
         <a href="/">
-          Shop now
+          {{ 'home.shopNow' | translate }}
         </a> </button>
     </div>
 
@@ -23,8 +26,9 @@
   <div class="featured-products">
 
     <div class="section-header">
-            <h2 class="text-center mb-4">
-        PRODUCT <span>FEATURED</span>
+      <h2 class="text-center mb-4">
+        {{ 'home.featuredTitle' | translate }}
+        <span>{{ 'home.featuredHighlight' | translate }}</span>
       </h2>
 
 
@@ -42,7 +46,7 @@
             @if(product.isNew)
             {
             <span class="badge">
-              NEW
+              {{ 'home.new' | translate }}
             </span>
 
             }
@@ -57,7 +61,7 @@
             @if(product.isHot)
             {
             <span class="badge ">
-              HOT
+              {{ 'home.hot' | translate }}
             </span>
             }
 
@@ -68,7 +72,7 @@
             <img [src]="product.image" [alt]="product.name">
 
             <div class="out-stock" *ngIf="product.outOfStock">
-              Out Of Stock
+              {{ 'home.outOfStock' | translate }}
             </div>
 
           </div>
@@ -97,7 +101,7 @@
 
             <div class="rating">
               <span>
-              ({{ product.reviewsCount }})
+                ({{ product.reviewsCount }})
               </span>
               ⭐⭐⭐⭐⭐
             </div>
@@ -111,11 +115,11 @@
 
       <div class="text-center  view-all d-flex align-item-center justify-content-center mt-4">
         <button>
-              <a routerLink="/allProduct">
+          <a routerLink="/allProduct">
 
-                <span class="px-1"> ← </span>
-                View All Product
-              </a>
+            <span class="px-1"> ← </span>
+            {{ 'home.viewAllProducts' | translate }}
+          </a>
         </button>
       </div>
 

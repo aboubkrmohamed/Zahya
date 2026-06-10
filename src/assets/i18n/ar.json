@@ -1,8 +1,78 @@
 {
-  "home": {
-    "title": "مرحبا بك في زهية"
+  "nav": {
+    "home": "الرئيسية",
+    "about": "من نحن",
+    "products": "المنتجات",
+    "reviews": "التقييمات",
+    "contact": "تواصل معنا",
+    "toggle": "فتح القائمة"
   },
+
+  "home": {
+    "title": "مرحبا بك في زهية",
+
+    "heroTitle": "العناية بالبشرة تحتاج إلى وقت واهتمام.",
+    "heroDescription": "مهما كانت خططك هذا الصيف، استمتعي بإطلالة متألقة مع خصومات تصل إلى 25٪ على منتجات زهية.",
+    "shopNow": "تسوق الآن",
+
+    "featuredTitle": "المنتجات",
+    "featuredHighlight": "المميزة",
+
+    "new": "جديد",
+    "hot": "الأكثر طلباً",
+    "outOfStock": "غير متوفر",
+
+    "viewAllProducts": "عرض جميع المنتجات"
+  },
+
   "buttons": {
     "changeLanguage": "English"
-  }
+  },
+  "allProducts": {
+  "title": "جميع",
+  "titleHighlight": "المنتجات",
+  "subtitle": "اكتشفي منتجك التجميلي المفضل القادم",
+
+  "search": "بحث",
+  "searchPlaceholder": "ابحث عن المنتجات...",
+
+  "categories": "التصنيفات",
+
+  "sortBy": "ترتيب حسب",
+  "default": "الافتراضي",
+  "priceLowHigh": "السعر: من الأقل إلى الأعلى",
+  "priceHighLow": "السعر: من الأعلى إلى الأقل",
+  "nameAZ": "الاسم: أ إلى ي",
+
+  "filter": "التصفية",
+  "inStockOnly": "المتوفر فقط",
+  "onSale": "العروض فقط",
+
+  "clearFilters": "مسح جميع الفلاتر",
+
+  "product": "منتج",
+  "products": "منتجات",
+  "found": "موجودة",
+
+  "page": "الصفحة",
+  "of": "من",
+
+  "filtered": "تمت التصفية",
+
+  "new": "جديد",
+  "hot": "الأكثر طلباً",
+
+  "outOfStock": "غير متوفر",
+
+  "addToCart": "إضافة للسلة",
+
+  "wishlist": "إضافة للمفضلة",
+  "quickView": "عرض سريع",
+
+  "previousPage": "الصفحة السابقة",
+  "nextPage": "الصفحة التالية",
+
+  "noProducts": "لم يتم العثور على منتجات",
+  "tryAgain": "حاول تعديل البحث أو الفلاتر"
+}
 }

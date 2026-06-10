@@ -1,27 +1,30 @@
 <div class="all-product-page">
 
-  <!-- ═══════════════ PAGE HEADER ═══════════════ -->
   <div class="page-header">
     <div class="container">
-      <h1>All <span>Products</span></h1>
-      <p>Discover your next beauty essential</p>
+      <h1>
+          {{ 'allProducts.title' | translate }}
+        <span>{{ 'allProducts.titleHighlight' | translate }}</span>
+    </h1>
+      <p>{{ 'allProducts.subtitle' | translate }}</p>
     </div>
   </div>
 
   <div class="container">
     <div class="content-wrapper">
 
-      <!-- ═══════════════ SIDEBAR FILTERS ═══════════════ -->
       <aside class="sidebar">
 
         <div class="sidebar-card">
-          <h6 class="sidebar-title">Search</h6>
+          <h6 class="sidebar-title">
+              {{ 'allProducts.search' | translate }}
+          </h6>
           <div class="search-box">
             <i class="bi bi-search search-icon"></i>
             <input
               type="text"
               class="form-control search-input"
-              placeholder="Search products..."
+              placeholder="{{ 'allProducts.searchPlaceholder' | translate }}"
               [value]="searchQuery()"
               (input)="onSearch($any($event.target).value)"
             />
@@ -34,7 +37,7 @@
         </div>
 
         <div class="sidebar-card">
-          <h6 class="sidebar-title">Categories</h6>
+          <h6 class="sidebar-title">  {{ 'allProducts.categories' | translate }}</h6>
           <div class="category-list">
             @for (cat of categories; track cat) {
               <button
@@ -52,30 +55,33 @@
         </div>
 
         <div class="sidebar-card">
-          <h6 class="sidebar-title">Sort By</h6>
+          <h6 class="sidebar-title">
+              {{ 'allProducts.sortBy' | translate }}
+          </h6>
           <select
             class="form-select sort-select"
             [value]="selectedSort()"
             (change)="setSort($any($event.target).value)"
           >
-            <option value="default">Default</option>
-            <option value="price-asc">Price: Low → High</option>
-            <option value="price-desc">Price: High → Low</option>
-            <option value="name">Name A–Z</option>
+            <option value="default">  {{ 'allProducts.default' | translate }}</option>
+            <option value="price-asc">   {{ 'allProducts.priceLowHigh' | translate }}  </option>
+            <option value="price-desc">  {{ 'allProducts.priceHighLow' | translate }}</option>
+            <option value="name"> {{ 'allProducts.nameAZ' | translate }}
+            </option>
           </select>
         </div>
 
         <div class="sidebar-card">
-          <h6 class="sidebar-title">Filter</h6>
+          <h6 class="sidebar-title">  {{ 'allProducts.filter' | translate }}</h6>
           <div class="filter-toggles">
             <label class="toggle-row" (click)="toggleInStock()">
-              <span class="toggle-label">In Stock Only</span>
+              <span class="toggle-label">  {{ 'allProducts.inStockOnly' | translate }}</span>
               <div class="custom-toggle" [class.on]="showInStockOnly()">
                 <span class="toggle-thumb"></span>
               </div>
             </label>
             <label class="toggle-row" (click)="toggleOnSale()">
-              <span class="toggle-label">On Sale</span>
+              <span class="toggle-label">  {{ 'allProducts.onSale' | translate }}</span>
               <div class="custom-toggle" [class.on]="showOnSaleOnly()">
                 <span class="toggle-thumb"></span>
               </div>
@@ -84,173 +90,234 @@
         </div>
 
         @if (hasActiveFilters) {
-          <button class="btn-clear-all" (click)="clearFilters()">
+          <button class="btn-clear-all w-100 d-flex align-items-center justify-content-center gap-2" (click)="clearFilters()">
             <i class="bi bi-arrow-counterclockwise"></i>
-            Clear All Filters
+            {{ 'allProducts.clearFilters' | translate }}
           </button>
         }
 
       </aside>
 
-      <!-- ═══════════════ PRODUCTS GRID ═══════════════ -->
-      <main class="products-main">
+ <main class="products-main">
 
-        <!-- Results bar -->
-        <div class="results-bar">
-          <span class="results-count">
-            {{ filteredProducts().length }}
-            {{ filteredProducts().length === 1 ? 'product' : 'products' }} found
-          </span>
-          @if (filteredProducts().length > 0) {
-            <span class="page-info">
-              Page {{ currentPage() }} of {{ totalPages() }}
-            </span>
-          }
-          @if (hasActiveFilters) {
-            <span class="active-filter-tag">
-              <i class="bi bi-funnel-fill"></i> Filtered
-            </span>
-          }
-        </div>
+  <div class="results-bar d-flex align-items-center gap-2 mb-4">
 
-        <!-- Grid -->
-        @if (paginatedProducts().length > 0) {
-          <div class="products-grid">
-            @for (product of paginatedProducts(); track product.id) {
-              <div class="product-card">
+    <span class="results-count">
+      {{ filteredProducts().length }}
 
-                <!-- Badges -->
-                <div class="badges-wrap">
-                  @if (product.isNew) {
-                    <span class="badge badge-new">NEW</span>
-                  }
-                  @if (product.isHot) {
-                    <span class="badge badge-hot">HOT</span>
-                  }
-                  @if (product.discount) {
-                    <span class="badge badge-discount">-{{ product.discount }}%</span>
-                  }
-                </div>
+      {{
+      filteredProducts().length === 1
+      ? ('allProducts.product' | translate)
+      : ('allProducts.products' | translate)
+      }}
 
-                <!-- Image -->
-                <div class="card-image-wrap">
-                  <img [src]="product.image" [alt]="product.name" class="card-img" />
-                  @if (product.outOfStock) {
-                    <div class="out-of-stock-overlay">Out of Stock</div>
-                  }
-                  <div class="card-overlay">
-                    <button class="overlay-btn" title="Add to Wishlist">
-                      <i class="bi bi-heart"></i>
-                    </button>
-                    <button class="overlay-btn" title="Quick View">
-                      <i class="bi bi-eye"></i>
-                    </button>
-                  </div>
-                </div>
+      {{ 'allProducts.found' | translate }}
+    </span>
 
-                <!-- Info -->
-                <div class="card-body-inner">
-                  <p class="product-category">{{ product.category }}</p>
-                  <h3 class="product-name">{{ product.name }}</h3>
+    @if (filteredProducts().length > 0) {
+      <span class="page-info ms-auto">
+        {{ 'allProducts.page' | translate }}
+        {{ page }}
+        {{ 'allProducts.of' | translate }}
+        {{ totalPages }}
+      </span>
+    }
 
-                  <div class="rating-row">
-                    <span class="stars">
-                      @for (star of starsArray(product.rating); track star) {
-                        <i class="bi"
-                          [class.bi-star-fill]="star <= product.rating"
-                          [class.bi-star]="star > product.rating">
-                        </i>
-                      }
-                    </span>
-                    <span class="review-count">({{ product.reviewsCount }})</span>
-                  </div>
+    @if (hasActiveFilters) {
+      <span class="active-filter-tag">
+        <i class="bi bi-funnel-fill"></i>
+        {{ 'allProducts.filtered' | translate }}
+      </span>
+    }
 
-                  <div class="price-row">
-                    <span class="price-old">${{ product.oldPrice }}</span>
-                    <span class="price-new">${{ product.price }}</span>
-                  </div>
+  </div>
 
-                  @if (product.sizes && product.sizes.length > 0) {
-                    <div class="sizes-row">
-                      @for (size of product.sizes; track size) {
-                        <span class="size-chip">{{ size }}</span>
-                      }
-                    </div>
-                  }
+  @if (filteredProducts().length > 0) {
 
-                  <button
-                    class="btn-add-cart"
-                    [disabled]="product.outOfStock"
-                    [class.disabled-btn]="product.outOfStock"
-                  >
-                    @if (product.outOfStock) {
-                      <i class="bi bi-x-circle me-1"></i> Out of Stock
-                    } @else {
-                      <i class="bi bi-cart-plus me-1"></i> Add to Cart
-                    }
-                  </button>
-                </div>
+    <div class="products-grid">
 
+      @for (
+        product of (
+          filteredProducts()
+          | paginate : {
+              itemsPerPage: pageSize,
+              currentPage: page
+            }
+        );
+        track product.id
+      ) {
+
+        <div class="product-card">
+
+          <div class="badges-wrap d-flex flex-column gap-1">
+
+            @if (product.isNew) {
+              <span class="badge badge-new">
+                {{ 'allProducts.new' | translate }}
+              </span>
+            }
+
+            @if (product.isHot) {
+              <span class="badge badge-hot">
+                {{ 'allProducts.hot' | translate }}
+              </span>
+            }
+
+            @if (product.discount) {
+              <span class="badge badge-discount">
+                -{{ product.discount }}%
+              </span>
+            }
+
+          </div>
+
+          <div class="card-image-wrap">
+
+            <img
+              [src]="product.image"
+              [alt]="product.name"
+              class="card-img"
+            />
+
+            @if (product.outOfStock) {
+              <div class="out-of-stock-overlay">
+                {{ 'allProducts.outOfStock' | translate }}
               </div>
             }
-          </div>
 
-          <!-- ═══════════════ PAGINATION ═══════════════ -->
-          @if (totalPages() > 1) {
-            <nav class="pagination-wrap" aria-label="Products pagination">
-              <!-- Prev -->
+            <div class="card-overlay d-flex flex-column gap-2">
+
               <button
-                class="page-btn nav-btn"
-                [class.disabled]="currentPage() === 1"
-                [disabled]="currentPage() === 1"
-                (click)="prevPage()"
-                aria-label="Previous page"
-              >
-                <i class="bi bi-chevron-left"></i>
+                class="overlay-btn d-flex align-items-center justify-content-center"
+                title="{{ 'allProducts.wishlist' | translate }}">
+                <i class="bi bi-heart"></i>
               </button>
 
-              <!-- Page numbers -->
-              @for (page of pageNumbers(); track $index) {
-                @if (isNumber(page)) {
-                  <button
-                    class="page-btn"
-                    [class.active]="page === currentPage()"
-                    (click)="goToPage(page)"
-                    [attr.aria-current]="page === currentPage() ? 'page' : null"
-                  >
-                    {{ page }}
-                  </button>
-                } @else {
-                  <span class="page-dots">...</span>
+              <button
+                class="overlay-btn d-flex align-items-center justify-content-center"
+                title="{{ 'allProducts.quickView' | translate }}">
+                <i class="bi bi-eye"></i>
+              </button>
+
+            </div>
+
+          </div>
+
+          <div class="card-body-inner d-flex flex-column">
+
+            <p class="product-category">
+              {{ product.category }}
+            </p>
+
+            <h3 class="product-name">
+              {{ product.name }}
+            </h3>
+
+            <div class="rating-row d-flex align-items-center gap-2">
+
+              <span class="stars">
+                @for (star of starsArray(product.rating); track star) {
+                  <i
+                    class="bi"
+                    [class.bi-star-fill]="star <= product.rating"
+                    [class.bi-star]="star > product.rating">
+                  </i>
                 }
+              </span>
+
+              <span class="review-count">
+                ({{ product.reviewsCount }})
+              </span>
+
+            </div>
+
+            <div class="price-row d-flex align-items-center gap-2">
+
+              <span class="price-old">
+                ${{ product.oldPrice }}
+              </span>
+
+              <span class="price-new">
+                ${{ product.price }}
+              </span>
+
+            </div>
+
+            @if (product.sizes && product.sizes.length > 0) {
+
+              <div class="sizes-row d-flex flex-wrap gap-1 mt-1">
+
+                @for (size of product.sizes; track size) {
+                  <span class="size-chip">
+                    {{ size }}
+                  </span>
+                }
+
+              </div>
+
+            }
+
+            <button
+              class="btn-add-cart w-100 d-flex align-items-center justify-content-center mt-auto"
+              [disabled]="product.outOfStock"
+              [class.disabled-btn]="product.outOfStock">
+
+              @if (product.outOfStock) {
+                <i class="bi bi-x-circle me-1"></i>
+                {{ 'allProducts.outOfStock' | translate }}
+              } @else {
+                <i class="bi bi-cart-plus me-1"></i>
+                {{ 'allProducts.addToCart' | translate }}
               }
 
-              <!-- Next -->
-              <button
-                class="page-btn nav-btn"
-                [class.disabled]="currentPage() === totalPages()"
-                [disabled]="currentPage() === totalPages()"
-                (click)="nextPage()"
-                aria-label="Next page"
-              >
-                <i class="bi bi-chevron-right"></i>
-              </button>
-            </nav>
-          }
-
-        } @else {
-          <!-- Empty state -->
-          <div class="empty-state">
-            <i class="bi bi-search empty-icon"></i>
-            <h4>No products found</h4>
-            <p>Try adjusting your search or filters</p>
-            <button class="btn-clear-all mt-3" (click)="clearFilters()">
-              Clear Filters
             </button>
-          </div>
-        }
 
-      </main>
+          </div>
+
+        </div>
+
+      }
+
+    </div>
+
+    @if (filteredProducts().length > pageSize) {
+
+      <pagination-controls
+        (pageChange)="page = $event"
+        previousLabel="Previous"
+        nextLabel="Next"
+        class="custom-pagination">
+      </pagination-controls>
+
+    }
+
+  } @else {
+
+    <div class="empty-state d-flex flex-column align-items-center justify-content-center text-center">
+
+      <i class="bi bi-search empty-icon"></i>
+
+      <h4>
+        {{ 'allProducts.noProducts' | translate }}
+      </h4>
+
+      <p>
+        {{ 'allProducts.tryAgain' | translate }}
+      </p>
+
+      <button
+        class="btn-clear-all mt-3"
+        (click)="clearFilters()">
+
+        {{ 'allProducts.clearFilters' | translate }}
+
+      </button>
+
+    </div>
+
+  }
+
+</main>
     </div>
   </div>
 </div>

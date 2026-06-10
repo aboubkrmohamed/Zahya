@@ -1,73 +1,61 @@
 <nav class="navbar navbar-expand-lg custom-navbar fixed-top">
   <div class="container">
 
-    <!-- Logo -->
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" routerLink="/">
       <img src="assets/imgs/logo.png" alt="logo" class="logo w-50">
     </a>
 
-    <!-- Mobile Toggle -->
     <button
       class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
       data-bs-target="#navbarContent"
+      [attr.aria-label]="'nav.toggle' | translate"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Links -->
-    <div
-      class="collapse navbar-collapse"
-      id="navbarContent"
-    >
-
+    <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
 
         <li class="nav-item">
-          <a class="nav-link active" href="#">
-            Home
+          <a class="nav-link active" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            {{ 'nav.home' | translate }}
           </a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#">
-            About
+          <a class="nav-link" routerLink="/about" routerLinkActive="active">
+            {{ 'nav.about' | translate }}
           </a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#">
-            My Product
+          <a class="nav-link" routerLink="/allProduct" routerLinkActive="active">
+            {{ 'nav.products' | translate }}
           </a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#">
-            Reviews
+          <a class="nav-link" routerLink="/reviews" routerLinkActive="active">
+            {{ 'nav.reviews' | translate }}
           </a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#">
-            Contact Us
+          <a class="nav-link" routerLink="/contact" routerLinkActive="active">
+            {{ 'nav.contact' | translate }}
           </a>
         </li>
 
-        <!-- Language Button -->
         <li class="nav-item">
-          <button
-            mat-raised-button
-            color="primary"
-            class="lang-btn"
-            (click)="changeLang()"
-          >
+          <button mat-raised-button color="primary" class="lang-btn" (click)="changeLang()">
             {{ currentLang === 'ar' ? 'EN' : 'AR' }}
           </button>
         </li>
 
       </ul>
-
     </div>
+
   </div>
 </nav>
