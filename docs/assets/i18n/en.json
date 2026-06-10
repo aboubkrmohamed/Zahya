@@ -1,8 +1,79 @@
 {
-  "home": {
-    "title": "Welcome To Zahya"
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "products": "My Products",
+    "reviews": "Reviews",
+    "contact": "Contact Us",
+    "toggle": "Toggle navigation"
   },
+
+  "home": {
+    "title": "Welcome To Zahya",
+
+    "heroTitle": "Skin wellness takes gentle time.",
+    "heroDescription": "Whatever your summer looks like, bring your own heat with up to 25% off Lumin Brand.",
+    "shopNow": "Shop Now",
+
+    "featuredTitle": "PRODUCT",
+    "featuredHighlight": "FEATURED",
+
+    "new": "NEW",
+    "hot": "HOT",
+    "outOfStock": "Out Of Stock",
+
+    "viewAllProducts": "View All Products"
+  },
+
   "buttons": {
     "changeLanguage": "العربيه"
-  }
+  },
+
+  "allProducts": {
+  "title": "All",
+  "titleHighlight": "Products",
+  "subtitle": "Discover your next beauty essential",
+
+  "search": "Search",
+  "searchPlaceholder": "Search products...",
+
+  "categories": "Categories",
+
+  "sortBy": "Sort By",
+  "default": "Default",
+  "priceLowHigh": "Price: Low → High",
+  "priceHighLow": "Price: High → Low",
+  "nameAZ": "Name A–Z",
+
+  "filter": "Filter",
+  "inStockOnly": "In Stock Only",
+  "onSale": "On Sale",
+
+  "clearFilters": "Clear All Filters",
+
+  "product": "product",
+  "products": "products",
+  "found": "found",
+
+  "page": "Page",
+  "of": "of",
+
+  "filtered": "Filtered",
+
+  "new": "NEW",
+  "hot": "HOT",
+
+  "outOfStock": "Out of Stock",
+
+  "addToCart": "Add to Cart",
+
+  "wishlist": "Add to Wishlist",
+  "quickView": "Quick View",
+
+  "previousPage": "Previous page",
+  "nextPage": "Next page",
+
+  "noProducts": "No products found",
+  "tryAgain": "Try adjusting your search or filters"
+}
 }
