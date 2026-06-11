@@ -1,0 +1,338 @@
+@if(product){
+
+<section class="product-details ">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-7">
+<!-- Product Info -->
+  <div class="product-info">
+
+
+    <h1>
+      {{ product.name }}
+    </h1>
+
+
+
+    <div class="rating">
+
+      <span>
+        (Customer Review {{product.reviewsCount || 50}})
+      </span>
+
+      <span class="stars">
+        ★★★★★
+      </span>
+
+    </div>
+
+
+
+
+
+    <p class="desc">
+
+      {{product.description}}
+
+    </p>
+
+
+
+
+
+    <div class="price">
+
+      @if(product.oldPrice){
+
+        <span class="old">
+          ${{product.oldPrice}}
+        </span>
+
+      }
+
+
+    <strong>
+  ${{totalPrice}}
+</strong>
+
+    </div>
+
+
+
+
+
+
+
+    <!-- Options -->
+
+    <div class="options">
+
+
+
+      @if(product.colors?.length){
+
+
+      <div>
+
+        <label>
+          Color
+        </label>
+
+
+
+        <div class="colors">
+
+
+          @for(color of product.colors; track color){
+
+            <span
+              [style.background]="color">
+            </span>
+
+          }
+
+
+        </div>
+
+
+      </div>
+
+
+      }
+
+
+
+
+
+      <div class="quantity">
+
+
+        <label>
+          Quantity
+        </label>
+
+
+
+        <div>
+
+
+          <button
+          (click)="decrease()">
+            -
+          </button>
+
+
+
+          <input
+          [value]="quantity"
+          readonly>
+
+
+
+          <button
+          (click)="increase()">
+            +
+          </button>
+
+
+        </div>
+
+
+
+      </div>
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+    <!-- Buttons -->
+
+    <div class="actions">
+
+
+      <button class="buy">
+
+        Buy Now
+
+      </button>
+
+
+
+      <button class="cart">
+
+        Add To Cart
+
+      </button>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <!-- Meta -->
+
+    <div class="meta">
+
+
+      <span>
+
+        Category:
+        {{product.category}}
+
+      </span>
+
+
+
+      <span>
+
+        Brand:
+        {{product.brand}}
+
+      </span>
+
+
+
+      <span>
+
+        SKU:
+        {{product.sku}}
+
+      </span>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <!-- Checkout -->
+
+
+    <div class="checkout">
+
+
+      <h4>
+        Guaranteed Safe Checkout
+      </h4>
+
+
+
+      <!-- <div class="payments">
+
+
+        <img
+        src="assets/images/payments.png"
+        alt="payments">
+
+
+      </div> -->
+
+
+
+
+      <p>
+        Free Worldwide Shipping On All Orders Over $100 🚚
+      </p>
+
+
+
+      <p>
+        Delivers In: 3-7 Working Days
+      </p>
+
+
+
+    </div>
+
+
+
+
+
+  </div>
+      </div>
+
+      <div class="col-md-5">
+ <!-- Gallery -->
+  <div class="product-gallery">
+
+
+    <div class="thumbs">
+
+      @for(img of product.thumbnails; track img){
+
+        <img
+          [src]="img"
+          [alt]="product.name"
+          (click)="changeImage(img)"
+          [class.active]="selectedImage === img"
+        >
+
+      }
+
+    </div>
+
+
+
+    <div class="main-image">
+
+      <img
+        [src]="selectedImage"
+        [alt]="product.name"
+      >
+
+    </div>
+
+
+  </div>
+
+      </div>
+    </div>
+
+
+
+
+
+
+
+  </div>
+
+
+
+
+</section>
+
+
+}
+
+@else {
+
+
+<div class="loading">
+
+Loading product...
+
+</div>
+
+
+}

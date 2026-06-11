@@ -7,10 +7,10 @@ import { ProductService } from './product.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { NgxPaginationModule } from 'ngx-pagination';
 type SortOption = 'default' | 'price-asc' | 'price-desc' | 'name';
-
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-all-product',
-  imports: [TranslateModule, CommonModule, FormsModule, RouterModule, NgxPaginationModule],
+  imports: [TranslateModule, CommonModule, FormsModule, RouterModule, NgxPaginationModule,RouterLink],
   templateUrl: './all-product.html',
   styleUrl: './all-product.scss',
 })

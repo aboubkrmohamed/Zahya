@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 interface Product {
@@ -24,7 +24,7 @@ interface Product {
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, RouterModule,TranslateModule],
+  imports: [CommonModule, RouterModule,TranslateModule,RouterLink],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

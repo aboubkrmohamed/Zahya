@@ -147,7 +147,9 @@
         track product.id
       ) {
 
-        <div class="product-card">
+        <div class="product-card"
+         [routerLink]="['/product-details', product.id]"
+>
 
           <div class="badges-wrap d-flex flex-column gap-1">
 
